@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+<!---{% load static %}--->
+{% load static %}
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+{% endblock %}
+
+
+{% block body %}
+  <div class="container ">
+
+      <ul class="nav nav-tabs  mb-3 nav-fill">
+        <li class="nav-item"><a class="nav-link {{ profile_edit }}" href="{% url 'profile_edit' %}">Personal profile</a></li>
+        <li class="nav-item"><a class="nav-link {{ profile_education }}" href="{% url 'profile_education' %}">Education</a></li>
+        <li class="nav-item"><a class="nav-link {{ profile_select_sponsor }}" href="{% url 'profile_select_sponsor' %}">Select sponsor</a></li>
+        <li class="nav-item"><a class="nav-link {{ profile_upload_file }}" href="{% url 'profile_upload_file' %}">Upload Files</a></li>
+        <li class="nav-item"><a class="nav-link {{ profile_reference }}" href="{% url 'profile_reference' %}">References</a></li>
+        <li class="nav-item"><a class="nav-link {{ profile_summary }}" href="{% url 'profile_summary' %}">Summary</a></li>
+      </ul>
+    <!---h1 class="text-center logo my-4">
+      <a href="#">Fellowship Application</a>
+    </h1--->
+
+    {% block content %}
+    {% endblock %}
+  </div>
+{% endblock %}

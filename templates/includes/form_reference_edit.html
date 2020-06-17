@@ -1,0 +1,42 @@
+{% load widget_tweaks %}
+
+{% if form.non_field_errors %}
+{% endif %}
+
+{% for field, ref, sent in form_refs %}
+    {% if field.label != 'Password' %}
+        {%if ref is not ''%}
+        <h5>{{ref}}</h5>
+        {% endif %}
+        
+        <b>{{ field.label }}</b>
+        <div class="form-group">
+            {% if form.is_bound %}
+                {% if field.errors %}
+                    {% render_field field class="form-control is-invalid" %}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">   
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% render_field field class="form-control is-valid" %}
+                    <!--{% render_field field class="form-control-file is-valid"|append_attr: type="text" placeholder="Category" readonly="readonly"%} -->
+                {% endif %}
+            {% else %}
+                {% if sent %} 
+                    <!--{{ field.value }}-->
+                    {% render_field field class="form-control"|append_attr: placeholder="{{ field.value }}" readonly="readonly"%}
+                {% else %}
+                    {% render_field field class="form-control" %}
+                {% endif %}
+            {% endif %}
+
+            {% if field.help_text %}
+                <small class="form-text text-muted">
+                    {{ field.help_text|safe }}
+                </small>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endfor %}

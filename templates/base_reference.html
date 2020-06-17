@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+<!---{% load static %}--->
+{% load static %}
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+{% endblock %}
+
+{% block mainMenu %}{% endblock %}
+
+{% block body %}
+    {% block content %}
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load filename_filter %}
+
+{% if widget.is_initial %}
+    <br>
+    <!--{{ widget.initial_text }}: -->
+    <!--a href="{{ widget.value.url }}">{{ widget.value }}</a-->
+    
+    Current file: <a href="{{ widget.value.url }}">{{widget.value|filename}}</a>
+
+    {% if not widget.required %}
+        <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}>
+        <label for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
+    {% endif %}<br>
+    <!--{{ widget.input_text }}:-->
+
+{% endif %}
+<div class="input-group mb-2"> 
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="">Upload file:</span>
+      </div>
+<!--div class="input-group mb-3"-->
+<!--div class="input-group"--> 
+    <div class="col" >
+        <input type="{{ widget.type }}"  name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>
+    <!--label class="custom-file-label" >Choose file</label-->
+    </div>

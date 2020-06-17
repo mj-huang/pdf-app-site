@@ -1,0 +1,53 @@
+{% extends 'base_accounts.html' %}
+{% load widget_tweaks %}
+
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Upload Files</h3>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!--div class="input-group"--> 
+                                {% include 'includes/form_profile_edit.html' with form=form_resume %}    
+                                <div class="input-group-append">
+                                    <button type="submit" name ="btn_resume" class="btn btn-secondary">Save</button>
+
+                                </div>        
+                            </div>
+                        </form>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!--div class="input-group mb-3"--> 
+                                {% include 'includes/form_profile_edit.html' with form=form_research_statement %}
+                                <div class="input-group-append">
+                                    <button type="submit" name ="btn_research_statement" class="btn btn-secondary">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!--div class="input-group mb-3"--> 
+                                {% include 'includes/form_profile_edit.html' with form=form_publication %}
+                                <div class="input-group-append">
+                                    <button type="submit" name ="btn_publication" class="btn btn-secondary">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
+                        <!--a class="btn btn-outline-dark" href="{% url 'profile_select_sponsor' %}">Back</a-->
+                        <a class="btn btn-primary" href="{% url 'profile_reference' %}">Continue</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

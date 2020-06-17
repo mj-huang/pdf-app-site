@@ -1,0 +1,182 @@
+{% extends 'base_accounts.html' %}
+{% load filename_filter %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <nav class="navbar navbar-light bg-light">
+                            <h5 class="card-title">Profile<small> | <a href="{% url 'profile_edit' %}">Edit</a></small> </h5>
+                        </nav>
+               
+                        <table class="table table-hover table-sm">
+                            <tbody>
+                                <tr>
+                                    <td scope="row">Name</td>
+                                    <td>{{ user.first_name }} {{ user.last_name }} </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Email</td>
+                                    <td>{{ user.email }} </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Citizenship</td>
+                                    <td>{{ user.citizenship }} </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Current institute</td>
+                                    <td>{{ user.current_institute }} </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Address</td>
+                                    <td>{{ user.address }} </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Province</td>
+                                    <td>{{ user.province }} </td>
+                                </tr>                                   
+                                <tr>
+                                    <td scope="row">Zip/Postal</td>
+                                    <td> {{ user.postal }} </td>
+                                </tr>     
+                                <tr>
+                                    <td scope="row">Country</td>
+                                    <td>{{ user.country }} </td>
+                                </tr>    
+                            </tbody>
+                        </table>
+                        <nav class="navbar navbar-light bg-light">
+
+                        <h5 class="card-title">Education<small> | <a href="{% url 'profile_education' %}">Edit</a></small> </h5>
+                        </nav>
+                        <table class="table table-hover table-sm">
+                            <tbody>
+                                <tr>
+                                    <td scope="row">PhD institute </td>
+                                    <td>{{ user.phd_institute }} </td>
+                                </tr>     
+                                <tr>
+                                    <td scope="row">PhD year</td>
+                                    <td>{{ user.phd_year }} </td>
+                                </tr>       
+                                <tr>
+                                    <td scope="row">Research interests</td>
+                                    <td>{{ user.research_interests }} </td>
+                                </tr>    
+                             </tbody>
+                        </table>
+
+                        <nav class="navbar navbar-light bg-light">
+                        <h5 class="card-title">Sponsor<small> | <a href="{% url 'profile_select_sponsor' %}">Edit</a></small> </h5>
+                        </nav>
+                        <table class="table table-hover table-sm">
+                            <tbody>
+                                <tr>
+                                    <td scope="row">Sponsor 1</td>
+                                    {% if user.sponsor_1 %} 
+                                        <td>{{ user.sponsor_1.first_name }} {{ user.sponsor_1.first_name }} - {{ user.sponsor_1.institute }}  </td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                </tr>     
+                                <tr>
+                                    <td scope="row">Sponsor 2</td>
+                                    {% if user.sponsor_2 %} 
+                                        <td>{{ user.sponsor_2.first_name }} {{ user.sponsor_2.first_name }} - {{ user.sponsor_2.institute }}  </td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                </tr>   
+                                <tr>
+                                    <td scope="row">Sponsor 3</td>
+                                    {% if user.sponsor_2 %} 
+                                        <td>{{ user.sponsor_3.first_name }} {{ user.sponsor_3.first_name }} - {{ user.sponsor_3.institute }}  </td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                </tr>   
+                            </tbody>
+                        </table>
+
+                        <nav class="navbar navbar-light bg-light">
+
+                        <h5 class="card-title">References</h5>
+                        </nav>
+                        <table class="table table-hover table-sm">
+                            <tbody>
+                                <tr>
+                                    <td scope="row">Reference 1</td>
+                                    {% if user.ref_1.name or user.ref_1.email %}
+                                        <td>{{ user.ref_1.name }} ({{ user.ref_1.email }})</td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                </tr>  
+                                 <tr>
+                                    <td scope="row">Reference 2</td>
+                                    {% if user.ref_2.name or user.ref_2.email %}
+                                        <td>{{ user.ref_2.name }} ({{ user.ref_2.email }})</td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                </tr>  
+                                <tr>
+                                    <td scope="row">Reference 3</td>
+                                    {% if user.ref_3.name or user.ref_3.email %}
+                                        <td>{{ user.ref_3.name }} ({{ user.ref_3.email }}) </td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                </tr> 
+                            </tbody>
+                        </table>
+
+                        <nav class="navbar navbar-light bg-light">
+                        <h5 class="card-title">Files<small> | <a href="{% url 'profile_upload_file' %}">Edit</a></small></h5>
+                        </nav>
+                        <table class="table table-hover table-sm">
+                            <tbody>
+                                <tr>
+                                    <td scope="row">Resume</td>
+                                    {% if user.resume %}
+                                        <td> <a href="{{ user.resume.url }}">{{ user.resume|filename }}</a></td>
+                                    {% else %}
+                                    <td></td>
+                                    {% endif %}
+                                </tr>  
+                                <tr>
+                                    <td scope="row">Research statement</td>
+                                    {% if user.research_statement %}
+                                        <td> <a href="{{ user.research_statement.url }}">{{ user.research_statement|filename }}</a></td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                </tr>  
+
+                                <tr>
+                                    <td scope="row">Publication list</td>
+                                    {% if user.research_statement %}
+                                        <td> <a href="{{ user.publication.url }}">{{ user.publication|filename }}</a></td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                </tr>  
+                            </tbody>
+                        </table>
+                        <div class="container">
+                            
+                            <!---{% if user.userprofile.image %}
+                            <img src="{{ user.userprofile.image.url }}" width="240">
+                            {% endif %} --->
+                        </div>
+                    </div>
+  
+                </div>
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

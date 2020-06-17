@@ -1,0 +1,39 @@
+{% extends 'base_accounts.html' %}
+
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block content %}
+<span class="glyphicon glyphicon-check"></span>
+    <div class="container">
+        <!--div class="row justify-content-center"-->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <!--h3 class="card-title">Reference 1</h3-->
+                        {% for btn_ref, ref_sent, form_refs in form_ref_zip %}
+                            <!--- form method="post" novalidate --->
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% include 'includes/form_reference_edit.html' with form_refs=form_refs %}
+                                <!---button type="submit" class="btn btn-primary">Submit</button--->
+                                {% if ref_sent %}
+                                    <button type="submit" name={{btn_ref}} class="btn btn-secondary" disabled>Email sent</button>
+
+                                {% else %}
+                                    <button type="submit" name={{btn_ref}} class="btn btn-primary">Send email</button>
+                                {% endif %}
+                            </form>
+                            <hr>
+                        {% endfor %}
+                        <a class="btn btn-primary" href="{% url 'profile_summary' %}">Continue</a>
+
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+{% endblock %}
