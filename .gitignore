@@ -5,4 +5,5 @@ db.sqlite3
 __pycache__
 /static
 /media
-requirements*.txt
+requirements.txt
+requirements_bkp.txt
