@@ -4,6 +4,6 @@
 db.sqlite3
 __pycache__
 /static
-/media
+/media/
 requirements.txt
 requirements_bkp.txt
